@@ -1,7 +1,7 @@
 # RPN-Calculator
 Création d'une calculatrice RPN (Reverse Polish Notation – Notation Polonaise Inverse).
 
-##Objectif
+## Objectif
 
 Développer une application en mode console permettant d’évaluer des expressions.
 
@@ -26,7 +26,7 @@ La calculatrice prendra en charge quelques commandes spéciales :
 - La commande `quit` permettra de quitter la calculatrice.
 - La commande `help` affichera une aide en ligne de la liste des commandes disponibles.
 
-##Language de programmation
+## Language de programmation
 Utilisation d'un language de programmation orienté objet, le C++, avec une compilation via un Cmakelist.
 
 ## Build
@@ -34,10 +34,10 @@ Commande pour lancer la calculatrice :
 
 `mkdir build; cd build; make ..; ./bin/RPN-Calculator`
 
-##Test Unitaire
+## Test Unitaire
 Test unitaire rédigé via Gtest (Google Test, étant une bibliothèque de tests unitaires pour le langage de programmation C++).
 
-##Exemples
+## Exemples
 
 Les expressions doivent être constituées : d'opérandes ainsi que d'opérateures.
 
