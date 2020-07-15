@@ -37,6 +37,18 @@ Commande pour lancer la calculatrice :
 ## Test Unitaire
 Test unitaire rédigé via Gtest (Google Test, étant une bibliothèque de tests unitaires pour le langage de programmation C++).
 
+Installation pour les utilisateurs OS X : 
+- `cd googletest `
+- `mkdir install `
+- `cd install `
+- `cmake ../`
+- `make`
+- `sudo make install #installs Google Test`
+- `echo "export CPLUS_INCLUDE_PATH=/usr/local/include" >> ~/.bash_profile`
+- `echo "export LIBRARY_PATH=/usr/local/lib" >> ~/.bash_profile`
+ 
+source ~/.bash_profile
+
 ## Exemples
 
 Les expressions doivent être constituées : d'opérandes ainsi que d'opérateures.
