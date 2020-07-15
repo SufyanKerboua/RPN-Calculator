@@ -7,20 +7,26 @@
 
 #include <iostream>
 #include <string>
+#include "Tools.hpp"
 #include "Interpreter.hpp"
+#include "RPNProcessor.hpp"
 
 class Core {
 
 public:
     Core();
-    ~Core() {}
+    ~Core() {};
     void run();
 
 protected:
-    int coreTest() { return 12; };
+    // todo à remove
+    inline int coreTest() { return 12; };
 
     Interpreter _interpreter;
+    RPNProcessor _rpnProcessor;
+    Tools       _tool;
     bool _running;
+    bool _calculationAuthorization;
 };
 
 

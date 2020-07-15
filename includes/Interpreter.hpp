@@ -7,18 +7,32 @@
 
 #include <string>
 #include <vector>
+#include <list>
 #include <iostream>
-#include <algorithm>
+#include "Tools.hpp"
 
 class Interpreter {
 public:
     Interpreter();
     ~Interpreter() {};
-    std::string getNextLine();
+    void getNextLine();
+    bool getNextLineToArray();
+    std::list<std::string> &splitStringToListDelimiters(std::string str, char delimiter);
+
 
 protected:
-//    std::vector<std::string> parseSpaceDelimiters(std::string &line);
-    std::string parseSpaceDelimiters(std::string &line);
+    std::string &removeUnnecessarySpace(std::string &line);
+    bool isRPNExpressionValid(std::list<std::string> expressionList);
+
+private:
+    std::string _line;
+    std::list<std::string> _expressionList;
+    Tools _tools;
+
+public:
+    // Getter
+    const std::string &getLine() const;
+    const std::list<std::string> &getExpressionList() const;
 };
 
 

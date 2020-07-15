@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 #include "Core.cpp"
+#include "RPNProcessor.cpp"
 
 class CoreTest : public Core {
 public:
@@ -12,14 +13,8 @@ public:
     }
 };
 
-TEST(CoreTest, MethodCheck1)
+TEST(Core_Class_Test, MethodCheck1)
 {
     CoreTest core;
     ASSERT_EQ(core.coreTest(), 12);
-}
-
-TEST(CoreTest, MethodCheck)
-{
-    CoreTest core;
-    ASSERT_GT(core.coreTest(), 10);
 }

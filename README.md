@@ -61,6 +61,8 @@ Exemples d’expressions RPN valides :
 
 4 2 + 3 - => 3
 
+3 5 8 * 7 + * => 141
+
 12 3 - 3 / => 3
 
 -2 3 11 + 5 - * => -18
