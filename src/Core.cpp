@@ -4,19 +4,19 @@
 
 #include "Core.hpp"
 
-std::map<std::string, std::function<void(void)>> COMMANDS;
+static std::map<std::string, std::function<void(void)>> COMMANDS;
 
-Core::Core(): _interpreter(COMMANDS), _running(true)
+static const std::string configFilePath("./config.yml");
+
+Core::Core(): _interpreter(COMMANDS, configFilePath), _config(configFilePath), _running(true)
 {
 }
 
 void Core::run()
 {
-    std::string line;
-
     _interpreter.executeCommands("clear");
     while (_running) {
-        std::cout << "RPN Calculator >";
+        std::cout << _config["prompt"].as<std::string>();
         _interpreter.getNextLine();
         _interpreter.processNewLine();
     }

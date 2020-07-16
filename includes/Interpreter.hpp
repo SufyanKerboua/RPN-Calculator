@@ -2,35 +2,36 @@
 // Created by sufyan kerboua on 14/07/2020.
 //
 
-#ifndef RPN_CALCULATOR_INTERPRETER_H
-#define RPN_CALCULATOR_INTERPRETER_H
+#pragma once
 
 #include <string>
 #include <map>
 #include <iostream>
 #include "Tools.hpp"
 #include "RPNProcessor.hpp"
+#include "ConfigLoader.hpp"
 
 using commandFunctor = std::function<void(void)>;
 
 class Interpreter {
 public:
-    explicit Interpreter(std::map<std::string, commandFunctor>& commandMap);
+    explicit Interpreter(std::map<std::string, commandFunctor>& commandMap, const std::string configFilePath);
     ~Interpreter() = default;
 
-    void            getNextLine();
-    void            processNewLine();
-    bool            isCommand(const std::string &line);
-    inline void     executeCommands(const std::string &command) { _commandMap[command](); };
+    void                                    getNextLine();
+    void                                    processNewLine();
+    bool                                    isCommand(const std::string &line);
+    inline void                             executeCommands(const std::string &command) { _commandMap[command](); };
     // Getter
-    inline const    std::string &getLine() const { return _line; };
+    inline const                            std::string &getLine() const { return _line; };
 private:
-    void            setCommands();
+    void                                    setCommands();
 private:
-    std::string     _line;
-    Tools           _tools;
-    RPNProcessor    _rpnProcessor;
-    std::map<std::string, commandFunctor>& _commandMap;
+    std::string                             _line;
+    Tools                                   _tools;
+    RPNProcessor                            _rpnProcessor;
+    ConfigLoader                            _config;
+    std::map<std::string, commandFunctor>&  _commandMap;
 
     // ============================  TMP  ============================
     /*
@@ -43,5 +44,3 @@ private:
     bool getNextLineToArray();
     */
 };
-
-#endif //RPN_CALCULATOR_INTERPRETER_H

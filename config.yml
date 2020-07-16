@@ -1,0 +1,45 @@
+prompt: RPN Calculator >                                        # Prompt à afficher
+
+
+french:
+  help: >                                                       # port of the application (it must be open and free!)
+    Bienvenue dans le programme "RPN-Calculator".
+
+    Une calculatrice à Notation Polonaise Inversé (NPI, RPN en anglais pour Reverse Polish Notation).
+
+
+    Commandes disponibles:
+
+
+    * 'clear' | Cette commande permet de réinitialiser la calculatrice, vider la stack utilisée, ainsi que supprimer l'historique affiché.
+
+    * 'quit'  | Cette commande permet de quitter la calculatrice.
+
+    * 'help'  | Cette commande permet d'afficher une aide pour l'utilisateur.
+
+
+  error:
+    missing_operand: Impossible d'effectuer le calcul, veuillez entrer au minimum 2 operandes.
+    bad_syntax: Mauvaise syntax, l'expression entré est invalide.
+
+
+english:
+  help: >
+    Welcome to "RPN-Calculator" software.
+
+    A Reverse Polish Notation calculator (RPN).
+
+
+    Available commands:
+
+
+    * 'clear' | This command allow to reset the RPN calculator, empty stack used, clear displayed history.
+
+    * 'quit'  | This command allow to quit the RPN calculator.
+
+    * 'help'  | This command allow to display an help for users.
+
+
+  error:
+    missing_operand: Impossible to calculate, 2 minimum operands are requiered.
+    bad_syntax: Bad syntax, entered expression is invalid.

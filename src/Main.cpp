@@ -3,11 +3,11 @@
 //
 
 #include <iostream>
+#include <exception>
 #include "Core.hpp"
 
 int main() {
 
-    std::cout << "NPR Calculator starting" << std::endl;
     try {
         Core core;
         core.run();

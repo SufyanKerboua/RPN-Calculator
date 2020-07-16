@@ -4,7 +4,7 @@
 
 #include "Interpreter.hpp"
 
-Interpreter::Interpreter(std::map<std::string, commandFunctor>& commandMap) : _commandMap(commandMap)
+Interpreter::Interpreter(std::map<std::string, commandFunctor>& commandMap, const std::string configFilePath) : _config(configFilePath), _commandMap(commandMap)
 {
     this->setCommands();
 }
@@ -43,7 +43,7 @@ void Interpreter::setCommands()
     _commandMap.emplace("quit", [&](void) -> void { exit(0); });
 
     _commandMap.emplace("help", [&](void) -> void {
-        std::cout << "Print Help here" << std::endl;
+        std::cout << _config["help"].as<std::string>() << std::endl;
     });
 }
 

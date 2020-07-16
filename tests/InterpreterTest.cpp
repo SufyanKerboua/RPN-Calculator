@@ -8,11 +8,13 @@
 #include "Tools.cpp"
 #include "RPNProcessor.cpp"
 
-std::map<std::string, std::function<void(void)>> COMMAND;
+static std::map<std::string, std::function<void(void)>> TEST_COMMAND;
+
+static const std::string configFilePath("./config.yml");
 
 TEST(Interpreter_Class_Test, isCommand)
 {
-    Interpreter inter(COMMAND);
+    Interpreter inter(TEST_COMMAND, configFilePath);
 
     ASSERT_EQ(inter.isCommand(std::string("clear")), true);
     ASSERT_EQ(inter.isCommand(std::string("quit")), true);

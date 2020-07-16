@@ -2,13 +2,13 @@
 // Created by sufyan kerboua on 14/07/2020.
 //
 
-#ifndef RPN_CALCULATOR_CORE_H
-#define RPN_CALCULATOR_CORE_H
+#pragma once
 
 #include <iostream>
 #include <string>
 #include "Tools.hpp"
 #include "Interpreter.hpp"
+#include "ConfigLoader.hpp"
 
 class Core {
 
@@ -20,8 +20,7 @@ protected:
     // todo à remove
     inline int coreTest() { return 12; };
 private:
-    Interpreter _interpreter;
-    bool        _running;
+    Interpreter     _interpreter;
+    ConfigLoader    _config;
+    bool            _running;
 };
-
-#endif //RPN_CALCULATOR_CORE_H

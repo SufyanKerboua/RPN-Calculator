@@ -2,12 +2,9 @@
 // Created by sufyan kerboua on 15/07/2020.
 //
 
-#ifndef RPN_CALCULATOR_RPNPROCESSOR_H
-#define RPN_CALCULATOR_RPNPROCESSOR_H
+#pragma once
 
 #include <iostream>
-//#include <vector>
-//#include <list>
 #include <stack>
 #include <string>
 #include "Tools.hpp"
@@ -54,5 +51,3 @@ public:
     void    setFirstOperand(double firstOperand);
     void    setSecondOperand(double secondOperand);
 };
-
-#endif //RPN_CALCULATOR_RPNPROCESSOR_H

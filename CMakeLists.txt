@@ -17,9 +17,15 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -g")
 #set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config.yml
+        DESTINATION ${PROJECT_BINARY_DIR}/)
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config.yml
+        DESTINATION ${PROJECT_BINARY_DIR}/bin)
+
 include_directories(src)
 
 enable_testing()
+add_subdirectory(lib)
 add_subdirectory(src)
 add_subdirectory(tests)
-add_subdirectory(lib/googletest-master)
