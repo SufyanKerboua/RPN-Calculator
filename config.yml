@@ -14,11 +14,13 @@ french:
     Commandes disponibles:
 
 
-    * 'clear' | Cette commande permet de réinitialiser la calculatrice, vider la stack utilisée, ainsi que supprimer l'historique affiché.
+    * 'clear'     | Cette commande permet de réinitialiser la calculatrice, vider la stack utilisée, ainsi que supprimer l'historique affiché.
 
-    * 'quit'  | Cette commande permet de quitter la calculatrice.
+    * 'quit'      | Cette commande permet de quitter la calculatrice.
 
-    * 'help'  | Cette commande permet d'afficher une aide pour l'utilisateur.
+    * 'help'      | Cette commande permet d'afficher une aide pour l'utilisateur.
+
+    * 'languages' | Cette commande permet d'alterner entre la langue de la calculatrice entre francais et anglais.
   language_switched: >                                          # port of the application (it must be open and free!)
     Changement de language de la calculatrice éffectuée !
 
@@ -28,6 +30,7 @@ french:
   error:
     missing_operand: Impossible d'effectuer le calcul, veuillez entrer au minimum 2 operandes.
     bad_syntax: Mauvaise syntax, l'expression ou la commande entrée est invalide.
+    division_by_zero: Opération interdite, la division par 0 est impossible.
 
 english:
   help: >
@@ -39,11 +42,13 @@ english:
     Available commands:
 
 
-    * 'clear' | This command allow to reset the RPN calculator, empty stack used, clear displayed history.
+    * 'clear'     | This command allow to reset the RPN calculator, empty stack used, clear displayed history.
 
-    * 'quit'  | This command allow to quit the RPN calculator.
+    * 'quit'      | This command allow to quit the RPN calculator.
 
-    * 'help'  | This command allow to display an help for users.
+    * 'help'      | This command allow to display an help for users.
+
+    * 'languages' | This command allow to switch the RPN calculator language between french and english.
   language_switched: >
     Calculator language well exchanged !
 
@@ -53,3 +58,4 @@ english:
   error:
     missing_operand: Impossible to calculate, 2 minimum operands are requiered.
     bad_syntax: Bad syntax, entered expression or command is invalid.
+    division_by_zero: Prohibited operation, divide by 0 is impossible.

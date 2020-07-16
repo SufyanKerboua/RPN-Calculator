@@ -12,7 +12,7 @@ static const std::string configFilePath("./config.yml");
  * @brief Constructeur, initialisation de la classe.
    @param None
    */
-Core::Core() : _config(configFilePath), _commandMap(COMMANDS), _running(true), _language("french")
+Core::Core() : _running(true), _language("french"), _config(configFilePath), _commandMap(COMMANDS)
 {
     this->setCommands();
 }
@@ -56,6 +56,12 @@ void Core::getNextLine()
     _tools.removeUnnecessarySpace((std::string &) _line);
 }
 
+void Core::printErrorMessage()
+{
+    if (_tools.getErrorToken().compare("none") != 0)
+        std::cout << _config[_language.c_str()]["error"][_tools.getErrorToken().c_str()] << std::endl;
+}
+
 /**
  * @brief Fonction ayant pour but de gérer l'expression dans la calculatrice
    @param None
@@ -65,9 +71,8 @@ void Core::processNewLine()
 {
     if (_tools.isOperandOrOperator(_line)) {
 
-        // todo gérer le disvion par 0
-        if (!_rpnProcessor.setInput(_line))
-            std::cout << _config[_language.c_str()]["error"]["missing_operand"] << std::endl;
+        _tools.setErrorToken(_rpnProcessor.setInput(_line));
+        this->printErrorMessage();
 
     } else if (this->isCommand(_line)) {
         this->executeCommands(_line);

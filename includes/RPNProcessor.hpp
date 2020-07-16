@@ -12,25 +12,24 @@
 class RPNProcessor
 {
 public:
-    RPNProcessor();
+    RPNProcessor() {};
     ~RPNProcessor() {};
 
-    bool            setInput(const std::string &input);
-    void            clearStack();
+    Tools::errorEnum    setInput(const std::string &input);
+    void                clearStack();
 
 private:
-    inline void     setInputInStack(const std::string &input) { _stackOperands.push(std::stod(input)); };
-    bool            calculationFromOperator(const std::string &input);
+    Tools::errorEnum    calculationFromOperator(const std::string &input);
+    bool                setCurrentOperatorFromString(const std::string myOperator);
+    void                getOperandsFromStack();
+    void                calculateOperands();
+    inline void         setInputInStack(const std::string &input) { _stackOperands.push(std::stod(input)); };
+    inline void         setResultInStack() { _stackOperands.push(this->getResult()); };
 
-    bool            setCurrentOperatorFromString(const std::string myOperator);
-    void            getOperandsFromStack();
-    bool            calculateOperands();
-    inline void     setResultInStack() { _stackOperands.push(this->getResult()); };
-
-    bool            plusOperation();
-    bool            minusOperation();
-    bool            multiplyOperation();
-    bool            divideOperation();
+    inline void         plusOperation() { _result = _firstOperand + _secondOperand; };
+    inline void         minusOperation() { _result = _firstOperand - _secondOperand; };
+    inline void         multiplyOperation() { _result = _firstOperand * _secondOperand; };
+    inline void         divideOperation() { _result = _firstOperand / _secondOperand; };
 
 private:
     Tools               _tools;
@@ -44,10 +43,10 @@ public:
     /*
      * Getter
      */
-    double  getResult() const;
+    inline double       getResult() const { return _result; };
     /*
      * Setter
      */
-    void    setFirstOperand(double firstOperand);
-    void    setSecondOperand(double secondOperand);
+    inline void         setFirstOperand(double firstOperand) { _firstOperand = firstOperand; };
+    inline void         setSecondOperand(double secondOperand) { _secondOperand = secondOperand; };
 };

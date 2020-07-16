@@ -4,35 +4,51 @@
 
 #include "RPNProcessor.hpp"
 
-RPNProcessor::RPNProcessor()
-{
-}
+/*
+ * Public Methods
+ */
 
-bool RPNProcessor::setInput(const std::string &input)
+Tools::errorEnum RPNProcessor::setInput(const std::string &input)
 {
     if (_tools.isOperand(input))
         this->setInputInStack(input);
     else if (_tools.isOperator(input))
         return (this->calculationFromOperator(input));
     else
-        return false;
-    return true;
+        return Tools::errorEnum::BadSyntax;
+    return Tools::errorEnum::Success;
 }
 
-bool RPNProcessor::calculationFromOperator(const std::string &input)
+void RPNProcessor::clearStack()
+{
+    while (_stackOperands.size() > 0) {
+        _stackOperands.top();
+        _stackOperands.pop();
+    }
+}
+
+/*
+ * Private Methods
+ */
+
+Tools::errorEnum RPNProcessor::calculationFromOperator(const std::string &input)
 {
     if (_stackOperands.size() < 2)
-        return false;
-    this->setCurrentOperatorFromString(input);
+        return Tools::errorEnum::MissingOperand;
+
+    if (!this->setCurrentOperatorFromString(input))
+        return Tools::errorEnum::DivisionByZero;
+
     this->getOperandsFromStack();
     this->calculateOperands();
     this->setResultInStack();
-    return true;
+
+    return Tools::errorEnum::Success;
 }
 
 bool RPNProcessor::setCurrentOperatorFromString(const std::string myOperator)
 {
-    if (!_tools.isOperator(myOperator))
+    if ((myOperator[0] == '/') && (_stackOperands.top() == 0))
         return false;
     _currentOperator = myOperator[0];
     return true;
@@ -46,7 +62,7 @@ void RPNProcessor::getOperandsFromStack()
     _stackOperands.pop();
 }
 
-bool RPNProcessor::calculateOperands()
+void RPNProcessor::calculateOperands()
 {
     switch (_currentOperator)
     {
@@ -62,68 +78,6 @@ bool RPNProcessor::calculateOperands()
         case '/':
             this->divideOperation();
             break;
-        default:
-            return false;
     }
     std::cout << this->getResult() << std::endl;
-    return true;
-}
-
-void RPNProcessor::clearStack()
-{
-    while (_stackOperands.size() > 0) {
-        _stackOperands.top();
-        _stackOperands.pop();
-    }
-}
-
-/*
- * Liste Opération
- */
-
-bool RPNProcessor::plusOperation()
-{
-    _result = _firstOperand + _secondOperand;
-    return true;
-}
-
-bool RPNProcessor::minusOperation()
-{
-    _result = _firstOperand - _secondOperand;
-    return true;
-}
-
-bool RPNProcessor::multiplyOperation()
-{
-    _result = _firstOperand * _secondOperand;
-    return true;
-}
-
-bool RPNProcessor::divideOperation()
-{
-    if (_secondOperand != 0)
-        _result = _firstOperand / _secondOperand;
-    else
-        return false;
-    return true;
-}
-
-/*
- * Setter
- */
-
-void RPNProcessor::setFirstOperand(double firstOperand) {
-    _firstOperand = firstOperand;
-}
-
-void RPNProcessor::setSecondOperand(double secondOperand) {
-    _secondOperand = secondOperand;
-}
-
-/*
- * Getter
- */
-
-double RPNProcessor::getResult() const {
-    return _result;
 }

@@ -3,10 +3,30 @@
 //
 
 #include "Tools.hpp"
-#include <iostream>
 
 Tools::Tools()
 {
+    this->initializeErrorMap();
+}
+
+void Tools::initializeErrorMap()
+{
+    _errorMap[0] = std::make_pair("none", errorEnum::Success);
+    _errorMap[1] = std::make_pair("bad_syntax", errorEnum::BadSyntax);
+    _errorMap[2] = std::make_pair("missing_operand", errorEnum::MissingOperand);
+    _errorMap[3] = std::make_pair("division_by_zero", errorEnum::DivisionByZero);
+}
+
+void Tools::setErrorToken(Tools::errorEnum errorToken)
+{
+    for (auto val: _errorMap)
+        if(val.second == errorToken)
+            _errorToken = val.first;
+}
+
+std::string Tools::getErrorToken()
+{
+    return _errorToken;
 }
 
 /**

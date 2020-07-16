@@ -5,7 +5,6 @@
 #pragma once
 
 #include <iostream>
-//#include <cstring>
 #include <string>
 #include <map>
 
@@ -27,8 +26,10 @@ private:
     void                                    getNextLine();
     void                                    processNewLine();
     inline void                             executeCommands(const std::string &command) { _commandMap[command](); };
+    void                                    printErrorMessage();
 
 protected:
+    // Permettant de tester la classe
     bool                                    isCommand(const std::string &param);
 
 private:
