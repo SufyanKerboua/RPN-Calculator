@@ -5,22 +5,38 @@
 #pragma once
 
 #include <iostream>
+//#include <cstring>
 #include <string>
+#include <map>
+
 #include "Tools.hpp"
-#include "Interpreter.hpp"
 #include "ConfigLoader.hpp"
+#include "RPNProcessor.hpp"
+
+using commandFunctor = std::function<void(void)>;
 
 class Core {
 
 public:
-    Core();
-    ~Core() {};
-    void run();
-protected:
-    // todo à remove
-    inline int coreTest() { return 12; };
+    explicit Core();
+    ~Core() = default;
+    void                                    run();
+
 private:
-    Interpreter     _interpreter;
-    ConfigLoader    _config;
-    bool            _running;
+    void                                    setCommands();
+    void                                    getNextLine();
+    void                                    processNewLine();
+    inline void                             executeCommands(const std::string &command) { _commandMap[command](); };
+
+protected:
+    bool                                    isCommand(const std::string &param);
+
+private:
+    bool                                    _running;
+    std::string                             _language;
+    std::string                             _line;
+    Tools                                   _tools;
+    RPNProcessor                            _rpnProcessor;
+    ConfigLoader                            _config;
+    std::map<std::string, commandFunctor>&  _commandMap;
 };

@@ -13,7 +13,6 @@ EmitterState::EmitterState()
       m_boolFmt(TrueFalseBool),
       m_boolLengthFmt(LongBool),
       m_boolCaseFmt(LowerCase),
-      m_nullFmt(TildeNull),
       m_intFmt(Dec),
       m_indent(2),
       m_preCommentIndent(2),
@@ -44,7 +43,6 @@ void EmitterState::SetLocalValue(EMITTER_MANIP value) {
   SetBoolFormat(value, FmtScope::Local);
   SetBoolCaseFormat(value, FmtScope::Local);
   SetBoolLengthFormat(value, FmtScope::Local);
-  SetNullFormat(value, FmtScope::Local);
   SetIntFormat(value, FmtScope::Local);
   SetFlowType(GroupType::Seq, value, FmtScope::Local);
   SetFlowType(GroupType::Map, value, FmtScope::Local);
@@ -179,9 +177,6 @@ void EmitterState::EndedGroup(GroupType::value type) {
   m_globalModifiedSettings.restore();
 
   ClearModifiedSettings();
-  m_hasAnchor = false;
-  m_hasTag = false;
-  m_hasNonContent = false;
 }
 
 EmitterNodeType::value EmitterState::CurGroupNodeType() const {
@@ -222,16 +217,11 @@ std::size_t EmitterState::LastIndent() const {
 
 void EmitterState::ClearModifiedSettings() { m_modifiedSettings.clear(); }
 
-void EmitterState::RestoreGlobalModifiedSettings() {
-  m_globalModifiedSettings.restore();
-}
-
 bool EmitterState::SetOutputCharset(EMITTER_MANIP value,
                                     FmtScope::value scope) {
   switch (value) {
     case EmitNonAscii:
     case EscapeNonAscii:
-    case EscapeAsJson:
       _Set(m_charset, value, scope);
       return true;
     default:
@@ -283,19 +273,6 @@ bool EmitterState::SetBoolCaseFormat(EMITTER_MANIP value,
     case LowerCase:
     case CamelCase:
       _Set(m_boolCaseFmt, value, scope);
-      return true;
-    default:
-      return false;
-  }
-}
-
-bool EmitterState::SetNullFormat(EMITTER_MANIP value, FmtScope::value scope) {
-  switch (value) {
-    case LowerNull:
-    case UpperNull:
-    case CamelNull:
-    case TildeNull:
-      _Set(m_nullFmt, value, scope);
       return true;
     default:
       return false;
