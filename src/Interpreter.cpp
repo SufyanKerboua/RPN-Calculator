@@ -4,8 +4,9 @@
 
 #include "Interpreter.hpp"
 
-Interpreter::Interpreter()
+Interpreter::Interpreter(std::map<std::string, commandFunctor>& commandMap) : _commandMap(commandMap)
 {
+    this->setCommands();
 }
 
 /**
@@ -17,11 +18,50 @@ void Interpreter::getNextLine()
 {
     getline(std::cin, _line);
     this->removeUnnecessarySpace((std::string &) _line);
-    // todo remove
-    //std::cout << _line << std::endl;
 }
 
-// todo move to utils
+void Interpreter::processNewLine()
+{
+    if (_tools.isOperandOrOperator(this->getLine())) {
+
+        if (!_rpnProcessor.setInput(this->getLine()))
+            std::cout << "Impossible d'effectuer le calcul, veuillez d'abord entrer 2 operandes." << std::endl;
+
+    } else if (this->isCommand(this->getLine())) {
+        this->executeCommands(this->getLine());
+    } else
+        std::cout << "Mauvaise syntax, veuillez recommencer votre expression." << std::endl;
+}
+
+void Interpreter::executeCommands(const std::string &command)
+{
+    _commandMap[command]();
+}
+
+void Interpreter::setCommands()
+{
+    _commandMap.emplace("clear", [&](void) -> void {
+        std::system("clear");
+        _rpnProcessor.clearStack();
+    });
+
+    _commandMap.emplace("quit", [&](void) -> void { exit(0); });
+
+    _commandMap.emplace("help", [&](void) -> void {
+        std::cout << "Print Help here" << std::endl;
+    });
+}
+
+bool Interpreter::isCommand(const std::string &line)
+{
+    std::string commands[] = {"clear", "quit", "help"};
+
+    if (_commandMap.find(line) != _commandMap.end())
+        return true;
+    return false;
+}
+
+//todo move to Tools
 /**
  * @brief Fonction ayant pour but de supprimer tout espace doublon, pouvant fausser l'interpretation de la ligne.
    @param Std::string &line | String à traiter
@@ -46,12 +86,21 @@ std::string & Interpreter::removeUnnecessarySpace(std::string &line)
     return line;
 }
 
+
+
+
+
+// ================================================  TMP à voir si on enleve ou pas  =================================================================
+
+
+
 /**
  * @brief Fonction ayant pour but de générer un tableau grâce à une string et un délimiteur défini
    @param Std::string str, | String à traiter
    @param Char delimiter, | Character permettant de délimiter la string
    @return std::vector<std::string> | Tableau répértoriant tous les éléments de la string précédente, sans les délimiteurs
    */
+/*
 std::list<std::string> & Interpreter::splitStringToListDelimiters(std::string str, char delimiter) {
     size_t pos = 0;
     std::string token;
@@ -64,12 +113,14 @@ std::list<std::string> & Interpreter::splitStringToListDelimiters(std::string st
     _expressionList.push_back(str);
     return _expressionList;
 }
+*/
 
 /**
  * @brief Fonction ayant pour but de récupérer la derniere ligne que l'utilisateur à pu taper et la renvoyer sous la forme d'un tableau
    @param None
    @return Bool | Boolean permettant de savoir si l'utilisateur si une erreur est survenu ou non
    */
+/*
 bool Interpreter::getNextLineToArray() {
 
     this->getNextLine();
@@ -89,12 +140,14 @@ bool Interpreter::getNextLineToArray() {
         return false;
     return true;
 }
+*/
 
 /**
  * @brief Fonction permettant de checker si l'attribut _expressionArray est une expression RPN valide
    @param None
    @return Bool | Boolean permettant de savoir si l'expression RPN est bonne ou non
    */
+/*
 bool Interpreter::isRPNExpressionValid(std::list<std::string> expressionArray) {
     int nbOperand = 0;
     int nbOperator = 0;
@@ -122,15 +175,10 @@ bool Interpreter::isRPNExpressionValid(std::list<std::string> expressionArray) {
 
     return true;
 }
-
-/*
- * Getter
  */
 
-const std::string &Interpreter::getLine() const {
-    return _line;
-}
-
+/*
 const std::list<std::string> &Interpreter::getExpressionList() const {
     return _expressionList;
 }
+*/

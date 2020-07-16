@@ -18,20 +18,23 @@ public:
     RPNProcessor();
     ~RPNProcessor() {};
 
-    bool    setInput(const std::string &input);
-    void    setInputInStack(const std::string &input);
-    bool    calculationFromOperator(const std::string &input);
-    void    attributeStackToOperands();
-    void    setResultInStack();
+    bool            setInput(const std::string &input);
+    inline void     setInputInStack(const std::string &input) { _stackOperands.push(std::stod(input)); };
+    inline void     setResultInStack() { _stackOperands.push(this->getResult()); };
+    bool            calculationFromOperator(const std::string &input);
 
+    // todo mettre de method en privé et les tester
+    void            clearStack();
 
-    bool    setCurrentOperatorFromString(const std::string myOperator);
-    bool    calculateOperands();
-    bool    plusOperation();
-    bool    minusOperation();
-    bool    multiplyOperation();
-    bool    divideOperation();
+    bool            setCurrentOperatorFromString(const std::string myOperator);
+    bool            calculateOperands();
+    bool            plusOperation();
+    bool            minusOperation();
+    bool            multiplyOperation();
+    bool            divideOperation();
 
+private:
+    void            getOperandsFromStack();
 
 private:
     Tools               _tools;

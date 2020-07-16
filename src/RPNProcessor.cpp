@@ -17,14 +17,36 @@ bool RPNProcessor::setInput(const std::string &input)
     return true;
 }
 
-void RPNProcessor::setResultInStack()
+bool RPNProcessor::calculationFromOperator(const std::string &input)
 {
-    _stackOperands.push(this->getResult());
+    if (_stackOperands.size() < 2)
+        return false;
+    this->setCurrentOperatorFromString(input);
+    this->getOperandsFromStack();
+    this->calculateOperands();
+    this->setResultInStack();
+    return true;
+}
+
+bool RPNProcessor::setCurrentOperatorFromString(const std::string myOperator)
+{
+    if (!_tools.isOperator(myOperator))
+        return false;
+    _currentOperator = myOperator[0];
+    return true;
+}
+
+void RPNProcessor::getOperandsFromStack()
+{
+    this->setSecondOperand(_stackOperands.top());
+    _stackOperands.pop();
+    this->setFirstOperand(_stackOperands.top());
+    _stackOperands.pop();
 }
 
 bool RPNProcessor::calculateOperands()
 {
-    switch (this->_currentOperator)
+    switch (_currentOperator)
     {
         case '+':
             this->plusOperation();
@@ -41,71 +63,44 @@ bool RPNProcessor::calculateOperands()
         default:
             return false;
     }
-    std::cout << "Result : " << this->getResult() << std::endl;
+    std::cout << this->getResult() << std::endl;
     return true;
 }
 
-//
-
-bool RPNProcessor::setCurrentOperatorFromString(const std::string myOperator)
+void RPNProcessor::clearStack()
 {
-    if (!_tools.isOperator(myOperator))
-        return false;
-    this->_currentOperator = myOperator[0];
-    return true;
+    while (_stackOperands.size() > 0) {
+        _stackOperands.top();
+        _stackOperands.pop();
+    }
 }
 
-void RPNProcessor::setInputInStack(const std::string &input)
-{
-    double newOperand = std::stod(input);
-    _stackOperands.push(newOperand);
-}
-
-bool RPNProcessor::calculationFromOperator(const std::string &input)
-{
-    if (_stackOperands.size() < 2)
-        return false;
-    this->setCurrentOperatorFromString(input);
-    this->attributeStackToOperands();
-    this->calculateOperands();
-    this->setResultInStack();
-    return true;
-}
-
-void RPNProcessor::attributeStackToOperands()
-{
-    this->setSecondOperand(_stackOperands.top());
-    _stackOperands.pop();
-    this->setFirstOperand(_stackOperands.top());
-    _stackOperands.pop();
-}
+/*
+ * Liste Opération
+ */
 
 bool RPNProcessor::plusOperation()
 {
-    std::cout << "In plusOperation with x : " << this->_firstOperand << ", y : " << this->_secondOperand << std::endl;
-    this->_result = this->_firstOperand + this->_secondOperand;
+    _result = _firstOperand + _secondOperand;
     return true;
 }
 
 bool RPNProcessor::minusOperation()
 {
-    std::cout << "In minusOperation with x : " << this->_firstOperand << ", y : " << this->_secondOperand << std::endl;
-    this->_result = this->_firstOperand - this->_secondOperand;
+    _result = _firstOperand - _secondOperand;
     return true;
 }
 
 bool RPNProcessor::multiplyOperation()
 {
-    std::cout << "In multiplyOperation with x : " << this->_firstOperand << ", y : " << this->_secondOperand << std::endl;
-    this->_result = this->_firstOperand * this->_secondOperand;
+    _result = _firstOperand * _secondOperand;
     return true;
 }
 
 bool RPNProcessor::divideOperation()
 {
-    std::cout << "In divideOperation with x : " << this->_firstOperand << ", y : " << this->_secondOperand << std::endl;
-    if (this->_secondOperand != 0)
-        this->_result = this->_firstOperand / this->_secondOperand;
+    if (_secondOperand != 0)
+        _result = _firstOperand / _secondOperand;
     else
         return false;
     return true;

@@ -9,7 +9,6 @@
 #include <string>
 #include "Tools.hpp"
 #include "Interpreter.hpp"
-#include "RPNProcessor.hpp"
 
 class Core {
 
@@ -17,17 +16,12 @@ public:
     Core();
     ~Core() {};
     void run();
-
 protected:
     // todo à remove
     inline int coreTest() { return 12; };
-
+private:
     Interpreter _interpreter;
-    RPNProcessor _rpnProcessor;
-    Tools       _tool;
-    bool _running;
-    bool _calculationAuthorization;
+    bool        _running;
 };
-
 
 #endif //RPN_CALCULATOR_CORE_H

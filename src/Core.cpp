@@ -4,7 +4,9 @@
 
 #include "Core.hpp"
 
-Core::Core() : _running(true), _calculationAuthorization(false)
+std::map<std::string, std::function<void(void)>> COMMANDS;
+
+Core::Core(): _interpreter(COMMANDS), _running(true)
 {
 }
 
@@ -12,26 +14,14 @@ void Core::run()
 {
     std::string line;
 
-    std::system("clear");
-    while (this->_running) {
-
+    _interpreter.executeCommands("clear");
+    while (_running) {
         std::cout << "RPN Calculator >";
         _interpreter.getNextLine();
-        if (_tool.isOperandOrOperator(_interpreter.getLine())) {
-            if (!_rpnProcessor.setInput(_interpreter.getLine()))
-                std::cout << "Impossible d'effectuer le calcul, veuillez d'abord entrer 2 operandes.";
-        } else
-            std::cout << "Mauvaise syntax, veuillez recommencer votre expression." << std::endl;
-
-
-        //if (_interpreter.getNextLineToArray())
-            //_rpnProcessor.calculationFromList(_interpreter.getExpressionList());
-
-//        if (_calculationAuthorization)
-            //_rpnProcessor.calculationFromArray(_interpreter.getExpressionArray());
-
-//        if (command quit is called)
-//        this->_running = false;
-//        return;
+        _interpreter.processNewLine();
     }
 }
+
+
+//if (_interpreter.getNextLineToArray())
+//_rpnProcessor.calculationFromList(_interpreter.getExpressionList());
