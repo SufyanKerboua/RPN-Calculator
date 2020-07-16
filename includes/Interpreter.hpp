@@ -6,7 +6,6 @@
 #define RPN_CALCULATOR_INTERPRETER_H
 
 #include <string>
-//#include <list>
 #include <map>
 #include <iostream>
 #include "Tools.hpp"
@@ -21,13 +20,12 @@ public:
 
     void            getNextLine();
     void            processNewLine();
-    void            setCommands();
     bool            isCommand(const std::string &line);
-    void            executeCommands(const std::string &line);
-
-    std::string     &removeUnnecessarySpace(std::string &line);
+    inline void     executeCommands(const std::string &command) { _commandMap[command](); };
     // Getter
     inline const    std::string &getLine() const { return _line; };
+private:
+    void            setCommands();
 private:
     std::string     _line;
     Tools           _tools;

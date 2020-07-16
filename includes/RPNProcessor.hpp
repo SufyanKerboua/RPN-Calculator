@@ -19,22 +19,21 @@ public:
     ~RPNProcessor() {};
 
     bool            setInput(const std::string &input);
-    inline void     setInputInStack(const std::string &input) { _stackOperands.push(std::stod(input)); };
-    inline void     setResultInStack() { _stackOperands.push(this->getResult()); };
-    bool            calculationFromOperator(const std::string &input);
-
-    // todo mettre de method en privé et les tester
     void            clearStack();
 
+private:
+    inline void     setInputInStack(const std::string &input) { _stackOperands.push(std::stod(input)); };
+    bool            calculationFromOperator(const std::string &input);
+
     bool            setCurrentOperatorFromString(const std::string myOperator);
+    void            getOperandsFromStack();
     bool            calculateOperands();
+    inline void     setResultInStack() { _stackOperands.push(this->getResult()); };
+
     bool            plusOperation();
     bool            minusOperation();
     bool            multiplyOperation();
     bool            divideOperation();
-
-private:
-    void            getOperandsFromStack();
 
 private:
     Tools               _tools;
@@ -46,15 +45,14 @@ private:
 
 public:
     /*
+     * Getter
+     */
+    double  getResult() const;
+    /*
      * Setter
      */
     void    setFirstOperand(double firstOperand);
     void    setSecondOperand(double secondOperand);
-public:
-    /*
-     * Getter
-     */
-    double  getResult() const;
 };
 
 #endif //RPN_CALCULATOR_RPNPROCESSOR_H

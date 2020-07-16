@@ -17,7 +17,7 @@ Interpreter::Interpreter(std::map<std::string, commandFunctor>& commandMap) : _c
 void Interpreter::getNextLine()
 {
     getline(std::cin, _line);
-    this->removeUnnecessarySpace((std::string &) _line);
+    _tools.removeUnnecessarySpace((std::string &) _line);
 }
 
 void Interpreter::processNewLine()
@@ -31,11 +31,6 @@ void Interpreter::processNewLine()
         this->executeCommands(this->getLine());
     } else
         std::cout << "Mauvaise syntax, veuillez recommencer votre expression." << std::endl;
-}
-
-void Interpreter::executeCommands(const std::string &command)
-{
-    _commandMap[command]();
 }
 
 void Interpreter::setCommands()
@@ -54,39 +49,10 @@ void Interpreter::setCommands()
 
 bool Interpreter::isCommand(const std::string &line)
 {
-    std::string commands[] = {"clear", "quit", "help"};
-
     if (_commandMap.find(line) != _commandMap.end())
         return true;
     return false;
 }
-
-//todo move to Tools
-/**
- * @brief Fonction ayant pour but de supprimer tout espace doublon, pouvant fausser l'interpretation de la ligne.
-   @param Std::string &line | String à traiter
-   @return Std::string &line | String épuré
-   */
-std::string & Interpreter::removeUnnecessarySpace(std::string &line)
-{
-    int lengthLine = line.length();
-
-    for (int i = 0; i < lengthLine; i++) {
-        while (isspace(line[i]) && isspace(line[i + 1])) {
-            line.erase(i, 1);
-        }
-    }
-
-    if (isspace(line[line.length() - 1]))
-        line.erase(line.length() - 1, 1);
-
-    if (isspace(line[0]))
-        line.erase(0, 1);
-
-    return line;
-}
-
-
 
 
 

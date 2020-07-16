@@ -12,8 +12,10 @@ bool RPNProcessor::setInput(const std::string &input)
 {
     if (_tools.isOperand(input))
         this->setInputInStack(input);
-    else
+    else if (_tools.isOperator(input))
         return (this->calculationFromOperator(input));
+    else
+        return false;
     return true;
 }
 

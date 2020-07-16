@@ -21,7 +21,3 @@ void Core::run()
         _interpreter.processNewLine();
     }
 }
-
-
-//if (_interpreter.getNextLineToArray())
-//_rpnProcessor.calculationFromList(_interpreter.getExpressionList());

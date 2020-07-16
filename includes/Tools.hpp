@@ -12,9 +12,10 @@ public:
     Tools();
     ~Tools() {};
 
-    bool isOperandOrOperator(std::string expression);
-    bool isOperand(std::string expression);
-    bool isOperator(std::string expression);
+    bool            isOperandOrOperator(std::string expression);
+    bool            isOperand(std::string expression);
+    bool            isOperator(std::string expression);
+    std::string     &removeUnnecessarySpace(std::string &line);
 };
 
 #endif //RPN_CALCULATOR_TOOLS_HPP
