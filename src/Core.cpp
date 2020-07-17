@@ -56,6 +56,11 @@ void Core::getNextLine()
     _tools.removeUnnecessarySpace((std::string &) _line);
 }
 
+/**
+ * @brief Fonction ayant pour but d'afficher toutes les erreurs que l'utilisateur pourrais avoir commis, selon une
+   @param None
+   @return void
+   */
 void Core::printErrorMessage()
 {
     if (_tools.getErrorToken().compare("none") != 0)

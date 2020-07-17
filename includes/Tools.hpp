@@ -20,13 +20,13 @@ public:
         DivisionByZero      = 3
     };
 
-    bool            isOperandOrOperator(std::string expression);
-    bool            isOperand(std::string expression);
-    bool            isOperator(std::string expression);
-    std::string     &removeUnnecessarySpace(std::string &line);
-    void            initializeErrorMap();
-    void            setErrorToken(Tools::errorEnum errorToken);
-    std::string     getErrorToken();
+    bool                    isOperandOrOperator(std::string expression);
+    bool                    isOperand(std::string expression);
+    bool                    isOperator(std::string expression);
+    std::string             &removeUnnecessarySpace(std::string &line);
+    void                    initializeErrorMap();
+    void                    setErrorToken(Tools::errorEnum errorToken);
+    inline std::string      getErrorToken() { return _errorToken; };
 
 private:
     std::array<std::pair<std::string, Tools::errorEnum>, 4> _errorMap;

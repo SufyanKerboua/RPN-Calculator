@@ -4,11 +4,24 @@
 
 #include "Tools.hpp"
 
+/**
+ * @brief Constructeur, initialisation de la classe et de la map d'erreur.
+   @param None
+   */
 Tools::Tools()
 {
     this->initializeErrorMap();
 }
 
+/*
+ * Public Methods
+ */
+
+/**
+ * @brief Fonction ayant pour but d'initialiser une map d'erreur, reliant un token d'erreur de message d'erreur à un enum
+   @param None
+   @return void
+   */
 void Tools::initializeErrorMap()
 {
     _errorMap[0] = std::make_pair("none", errorEnum::Success);
@@ -17,16 +30,16 @@ void Tools::initializeErrorMap()
     _errorMap[3] = std::make_pair("division_by_zero", errorEnum::DivisionByZero);
 }
 
+/**
+ * @brief Fonction ayant pour but de sauvegarder le dernier token d'erreur à dans la classe (seulement si celui-ci appartient à la Map d'erreur préalablement définis)
+   @param None
+   @return void
+   */
 void Tools::setErrorToken(Tools::errorEnum errorToken)
 {
     for (auto val: _errorMap)
         if(val.second == errorToken)
             _errorToken = val.first;
-}
-
-std::string Tools::getErrorToken()
-{
-    return _errorToken;
 }
 
 /**

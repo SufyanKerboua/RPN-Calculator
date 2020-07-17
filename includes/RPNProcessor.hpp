@@ -19,7 +19,7 @@ public:
     void                clearStack();
 
 private:
-    Tools::errorEnum    calculationFromOperator(const std::string &input);
+    Tools::errorEnum    calculationFromOperator(const std::string &myOperator);
     bool                setCurrentOperatorFromString(const std::string myOperator);
     void                getOperandsFromStack();
     void                calculateOperands();

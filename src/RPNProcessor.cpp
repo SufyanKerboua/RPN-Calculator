@@ -8,6 +8,15 @@
  * Public Methods
  */
 
+/**
+ * @brief Fonction ayant pour but de récupérer une expression,
+ * checker si elle correspond à un opérateur ou un opérande,
+ * puis la calculer si cela est possible, puis d'afficher le resultat
+ *
+   @param const std::string &input | l'expression donnée
+   @return Tools::errorEnum | renvoie un enum permettant
+   de savoir si une erreur ou non est survenu
+   */
 Tools::errorEnum RPNProcessor::setInput(const std::string &input)
 {
     if (_tools.isOperand(input))
@@ -19,6 +28,12 @@ Tools::errorEnum RPNProcessor::setInput(const std::string &input)
     return Tools::errorEnum::Success;
 }
 
+/**
+ * @brief Fonction ayant pour but de vider la stack de la calculatrice
+ *
+   @param none
+   @return void
+   */
 void RPNProcessor::clearStack()
 {
     while (_stackOperands.size() > 0) {
@@ -31,12 +46,20 @@ void RPNProcessor::clearStack()
  * Private Methods
  */
 
-Tools::errorEnum RPNProcessor::calculationFromOperator(const std::string &input)
+/**
+ * @brief Fonction ayant pour but de calculer les 2 dernieres opérandes
+ * avec l'opérateur donnée
+ *
+   @param const std::string &myOperator | string devant être un opérateur
+   @return Tools::errorEnum | renvoie un enum permettant
+   de savoir si une erreur ou non est survenu
+   */
+Tools::errorEnum RPNProcessor::calculationFromOperator(const std::string &myOperator)
 {
     if (_stackOperands.size() < 2)
         return Tools::errorEnum::MissingOperand;
 
-    if (!this->setCurrentOperatorFromString(input))
+    if (!this->setCurrentOperatorFromString(myOperator))
         return Tools::errorEnum::DivisionByZero;
 
     this->getOperandsFromStack();
@@ -46,6 +69,13 @@ Tools::errorEnum RPNProcessor::calculationFromOperator(const std::string &input)
     return Tools::errorEnum::Success;
 }
 
+/**
+ * @brief Fonction ayant pour but de sauvegarder l'opérateur actuel dans la classe
+ *
+   @param const std::string myOperator | string devant être un opérateur
+   @return bool | renvoie un boolean  pouvant être true si l'opérateur à bien été sauvegarder
+   et false si une division par 0 est demandé
+   */
 bool RPNProcessor::setCurrentOperatorFromString(const std::string myOperator)
 {
     if ((myOperator[0] == '/') && (_stackOperands.top() == 0))
@@ -54,6 +84,12 @@ bool RPNProcessor::setCurrentOperatorFromString(const std::string myOperator)
     return true;
 }
 
+/**
+ * @brief Fonction ayant pour but de récupérer les 2 dernieres opérandes et de les enlever de la stack
+ *
+   @param None
+   @return void
+   */
 void RPNProcessor::getOperandsFromStack()
 {
     this->setSecondOperand(_stackOperands.top());
@@ -62,6 +98,12 @@ void RPNProcessor::getOperandsFromStack()
     _stackOperands.pop();
 }
 
+/**
+ * @brief Fonction ayant pour but de lancer l'opération demandé avec ces opérandes
+ *
+   @param None
+   @return void
+   */
 void RPNProcessor::calculateOperands()
 {
     switch (_currentOperator)
