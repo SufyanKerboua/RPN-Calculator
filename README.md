@@ -76,3 +76,8 @@ Exemples d’expressions RPN valides :
 12 3 - 3 /         => 3
 
 -2 3 11 + 5 - *    => -18
+
+## UML
+
+Class diagram :
+![alt text](https://github.com/[SufyanKerboua]/[RPN-Calculator]/blob/[UML]/RPN-Calculator Class Diagram.png?raw=true)
