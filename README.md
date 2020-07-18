@@ -38,26 +38,37 @@ Utilisation d'un language de programmation orienté objet, le C++, avec une comp
 ## Build
 Commande pour lancer la calculatrice : 
 
-`mkdir build; cd build; make ..; ./bin/RPN-Calculator`
+`mkdir build; cd build; cmake ..;make ; ./bin/RPN-Calculator`
+
+Le binaire se trouvera dans le dossier `build/bin/`.
 
 ## Test Unitaire
 Test unitaire rédigé via Gtest (Google Test, étant une bibliothèque de tests unitaires pour le langage de programmation C++).
 
 Installation pour les utilisateurs OS X : 
-- `cd googletest `
-- `mkdir install `
-- `cd install `
+ - `cd lib/googletest-master `
+ - `mkdir install ` (le supprimer si il existe)
+ - `cd install `
 - `cmake ../`
 - `make`
 - `sudo make install #installs Google Test`
 - `echo "export CPLUS_INCLUDE_PATH=/usr/local/include" >> ~/.bash_profile`
 - `echo "export LIBRARY_PATH=/usr/local/lib" >> ~/.bash_profile`
  
+ Installation pour les utilisateurs Linux : 
+ - `cd lib/googletest-master `
+ - `mkdir install ` (le supprimer si il existe)
+ - `cd install `
+ - `cmake ../`
+ - `make`
+ - `sudo make install`
+ 
+ 
 source ~/.bash_profile
 
 Commande pour lancer les tests : 
 
-`mkdir build; cd build; make ..; ./bin/RPN-Calculator_test`
+`mkdir build; cd build; cmake ..; make; ./bin/RPN-Calculator_test`
 
 ## Exemples
 

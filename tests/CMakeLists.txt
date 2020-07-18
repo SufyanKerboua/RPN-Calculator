@@ -2,6 +2,8 @@
 # ==========================
 include_directories(../includes)
 
+include_directories(../lib)
+
 # Set name of the binary
 # =======================
 set(PROJECT_NAME ${CMAKE_PROJECT_NAME}_test)
