@@ -22,9 +22,15 @@ La calculatrice prendra en charge quatre opérations de base :
 
 La calculatrice prendra en charge quelques commandes spéciales :
 
-- La commande `clear` permettra de réinitialiser la calculatrice.
-- La commande `quit` permettra de quitter la calculatrice.
-- La commande `help` affichera une aide en ligne de la liste des commandes disponibles.
+- La commande `clear` permet de réinitialiser la calculatrice, aussi bien le terminal que la stack utilisée.
+- La commande `quit` permet de fermer la calculatrice.
+- La commande `help` affiche une aide permettant de lister toutes les commandes disponibles.
+
+## Bonus
+
+Une commande a été rajouté :
+
+- La commande `language` permet de changer la langue d'affichage de la calculatrice (entre français et anglais).
 
 ## Language de programmation
 Utilisation d'un language de programmation orienté objet, le C++, avec une compilation via un Cmakelist.
@@ -48,6 +54,10 @@ Installation pour les utilisateurs OS X :
 - `echo "export LIBRARY_PATH=/usr/local/lib" >> ~/.bash_profile`
  
 source ~/.bash_profile
+
+Commande pour lancer les tests : 
+
+`mkdir build; cd build; make ..; ./bin/RPN-Calculator_test`
 
 ## Exemples
 

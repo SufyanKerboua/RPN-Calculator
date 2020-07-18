@@ -30,6 +30,26 @@ TEST(RPNProcessor_Class_Test, setInput_advanced)
     ASSERT_EQ(calculator.setInput(std::string("*")), Tools::errorEnum::Success);
 }
 
+TEST(RPNProcessor_Class_Test, divideByZero_basic) {
+    RPNProcessor calculator;
+
+    ASSERT_EQ(calculator.setInput(std::string("20")), Tools::errorEnum::Success);
+    ASSERT_EQ(calculator.setInput(std::string("0")), Tools::errorEnum::Success);
+    ASSERT_EQ(calculator.setInput(std::string("/")), Tools::errorEnum::DivisionByZero);
+}
+
+TEST(RPNProcessor_Class_Test, divideByZero_advanced) {
+    RPNProcessor calculator;
+
+    ASSERT_EQ(calculator.setInput(std::string("20")), Tools::errorEnum::Success);
+
+    ASSERT_EQ(calculator.setInput(std::string("5")), Tools::errorEnum::Success);
+    ASSERT_EQ(calculator.setInput(std::string("-5")), Tools::errorEnum::Success);
+    ASSERT_EQ(calculator.setInput(std::string("+")), Tools::errorEnum::Success);
+
+    ASSERT_EQ(calculator.setInput(std::string("/")), Tools::errorEnum::DivisionByZero);
+}
+
 TEST(RPNProcessor_Class_Test, Mandatory_1)
 {
     RPNProcessor calculator;

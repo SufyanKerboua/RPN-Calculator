@@ -123,3 +123,20 @@ TEST(Tools_Class_Test, removeUnnecessarySpace)
     str = std::string("       salut     gars   a a                       a");
     ASSERT_EQ(tool.removeUnnecessarySpace(str), std::string("salut gars a a a"));
 }
+
+
+TEST(Tools_Class_Test, Set_Get_ErrorToken) {
+    Tools tool;
+
+    tool.setErrorToken(Tools::errorEnum::Success);
+    ASSERT_EQ(tool.getErrorToken(), std::string("none"));
+
+    tool.setErrorToken(Tools::errorEnum::BadSyntax);
+    ASSERT_EQ(tool.getErrorToken(), std::string("bad_syntax"));
+
+    tool.setErrorToken(Tools::errorEnum::MissingOperand);
+    ASSERT_EQ(tool.getErrorToken(), std::string("missing_operand"));
+
+    tool.setErrorToken(Tools::errorEnum::DivisionByZero);
+    ASSERT_EQ(tool.getErrorToken(), std::string("division_by_zero"));
+}

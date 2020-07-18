@@ -15,7 +15,7 @@
  *
    @param const std::string &input | l'expression donnée
    @return Tools::errorEnum | renvoie un enum permettant
-   de savoir si une erreur ou non est survenu
+   de savoir si une erreur est survenu ou non
    */
 Tools::errorEnum RPNProcessor::setInput(const std::string &input)
 {
@@ -52,7 +52,7 @@ void RPNProcessor::clearStack()
  *
    @param const std::string &myOperator | string devant être un opérateur
    @return Tools::errorEnum | renvoie un enum permettant
-   de savoir si une erreur ou non est survenu
+   de savoir si une erreur est survenu ou non
    */
 Tools::errorEnum RPNProcessor::calculationFromOperator(const std::string &myOperator)
 {

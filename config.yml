@@ -20,7 +20,7 @@ french:
 
     * 'help'      | Cette commande permet d'afficher une aide pour l'utilisateur.
 
-    * 'languages' | Cette commande permet d'alterner entre la langue de la calculatrice entre francais et anglais.
+    * 'language' | Cette commande permet d'alterner entre la langue de la calculatrice entre francais et anglais.
   language_switched: >                                          # port of the application (it must be open and free!)
     Changement de language de la calculatrice éffectuée !
 
@@ -48,7 +48,7 @@ english:
 
     * 'help'      | This command allow to display an help for users.
 
-    * 'languages' | This command allow to switch the RPN calculator language between french and english.
+    * 'language' | This command allow to switch the RPN calculator language between french and english.
   language_switched: >
     Calculator language well exchanged !
 
