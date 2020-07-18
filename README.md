@@ -80,4 +80,4 @@ Exemples d’expressions RPN valides :
 ## UML
 
 Class diagram :
-![alt text](https://github.com/[SufyanKerboua]/[RPN-Calculator]/blob/[UML]/RPN-Calculator_Class_Diagram.png?raw=true)
+![alt text](https://raw.githubusercontent.com/SufyanKerboua/RPN-Calculator/UML/RPN-Calculator_Class_Diagram.png?raw=true)
