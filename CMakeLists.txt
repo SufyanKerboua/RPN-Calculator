@@ -32,4 +32,5 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config.yml
 enable_testing()
 add_subdirectory(lib)
 add_subdirectory(src)
-add_subdirectory(tests)
+# A décommenter si vous souhaitez lancer les tests unitaire
+#add_subdirectory(tests)

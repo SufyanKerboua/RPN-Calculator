@@ -43,7 +43,12 @@ Commande pour lancer la calculatrice :
 Le binaire se trouvera dans le dossier `build/bin/`.
 
 ## Test Unitaire
+
 Test unitaire rédigé via Gtest (Google Test, étant une bibliothèque de tests unitaires pour le langage de programmation C++).
+
+Si vous souhaitez acceder au test unitaire mise en place, veuillez d'abord installer la librairie Gtest (presente dans le dossier `lib/googletest-master`)
+
+Ainsi que décommenter la derniere ligne du CmakeLists.txt, de la racine.
 
 Installation pour les utilisateurs OS X : 
  - `cd lib/googletest-master `
